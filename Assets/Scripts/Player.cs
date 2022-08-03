@@ -18,8 +18,6 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
-
-        Debug.Log(_movements.Result[0].collider);
         _directionX = Input.GetAxisRaw("Horizontal");
 
         if(Input.GetKeyDown(KeyCode.Space))
