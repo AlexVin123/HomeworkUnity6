@@ -106,7 +106,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 4
   m_Sprite: {fileID: 4492565307293645672, guid: 87ee9da947895a640bdf875dce7ad0b7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.75686276, g: 0.3764706, b: 0.3764706, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -134,8 +134,8 @@ MonoBehaviour:
   - {fileID: 147107113851285095}
   - {fileID: 7233184677260428469}
   m_Bounds:
-    m_Center: {x: -0.14813018, y: 2.4029415, z: 0}
-    m_Extent: {x: 2.0483541, y: 2.0478747, z: 0}
+    m_Center: {x: -0.14812827, y: 2.4029424, z: 0}
+    m_Extent: {x: 2.0483541, y: 2.0478745, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -247,7 +247,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_Sprite: {fileID: 6863357162929475665, guid: 87ee9da947895a640bdf875dce7ad0b7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.75686276, g: 0.3764706, b: 0.3764706, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -274,8 +274,8 @@ MonoBehaviour:
   - {fileID: 4417433887215709664}
   - {fileID: 147107113851285095}
   m_Bounds:
-    m_Center: {x: -1.3446633, y: 1.464015, z: 0}
-    m_Extent: {x: 0.6186472, y: 0.541604, z: 0}
+    m_Center: {x: -1.3446642, y: 1.4640151, z: 0}
+    m_Extent: {x: 0.6186472, y: 0.5416039, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -354,7 +354,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: -5325064505654655252, guid: 87ee9da947895a640bdf875dce7ad0b7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.75686276, g: 0.3764706, b: 0.3764706, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -382,7 +382,7 @@ MonoBehaviour:
   - {fileID: 147107113851285095}
   - {fileID: 7233184677260428469}
   m_Bounds:
-    m_Center: {x: -0.14413625, y: -0.07435584, z: 0}
+    m_Center: {x: -0.14413768, y: -0.07435632, z: 0}
     m_Extent: {x: 0.73390347, y: 0.5507338, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -463,11 +463,10 @@ GameObject:
   - component: {fileID: 4116030894952132862}
   - component: {fileID: 4116030894952132849}
   - component: {fileID: 4116030894952132860}
-  - component: {fileID: 5356909094343236481}
   - component: {fileID: 1670789329787737062}
-  - component: {fileID: -8474084194767486302}
+  - component: {fileID: 8499686093280967332}
   m_Layer: 0
-  m_Name: Character
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -551,21 +550,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &5356909094343236481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4537618059094436303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a19a60087f3306140aeab32d32982053, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speedWalk: 5
-  _speedRun: 10
-  _powerJump: 20
 --- !u!114 &1670789329787737062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -580,7 +564,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _accelerate: 10
   DirectionsY: 0
---- !u!114 &-8474084194767486302
+--- !u!114 &8499686093280967332
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -762,7 +746,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_Sprite: {fileID: 9005672279033416993, guid: 87ee9da947895a640bdf875dce7ad0b7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.75686276, g: 0.3764706, b: 0.3764706, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -789,7 +773,7 @@ MonoBehaviour:
   - {fileID: 4638282855073585735}
   - {fileID: 147107113851285095}
   m_Bounds:
-    m_Center: {x: -0.36119896, y: 2.3938212, z: 0}
+    m_Center: {x: -0.36119992, y: 2.3938222, z: 0}
     m_Extent: {x: 0.6053519, y: 0.57263553, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -869,7 +853,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 6
   m_Sprite: {fileID: 134259914580197347, guid: 87ee9da947895a640bdf875dce7ad0b7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.754717, g: 0.37308648, b: 0.37308648, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -896,8 +880,8 @@ MonoBehaviour:
   - {fileID: 8499889447788775823}
   - {fileID: 7233184677260428469}
   m_Bounds:
-    m_Center: {x: -0.46399695, y: 0.26314902, z: 0}
-    m_Extent: {x: 0.7363586, y: 0.5516972, z: 0}
+    m_Center: {x: -0.4639951, y: 0.26314902, z: 0}
+    m_Extent: {x: 0.7363585, y: 0.5516972, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
