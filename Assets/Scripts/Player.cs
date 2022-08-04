@@ -1,49 +1,47 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Movements))]
+[RequireComponent(typeof(Movement))]
 public class Player : MonoBehaviour
 {
     [SerializeField] private float _speedWalk;
     [SerializeField] private float _speedRun;
     [SerializeField] private float _powerJump;
 
-    private Movements _movements;
+    private Movement _movement;
     private float _directionMoveX;
 
     private void Start()
     {
-        _movements = GetComponent<Movements>();
+        _movement = GetComponent<Movement>();
     }
 
-    void Update()
+    private void Update()
     {
         _directionMoveX = Input.GetAxisRaw("Horizontal");
 
-        if (_movements.SetCollider() != null && _movements.SetCollider().TryGetComponent<Enemy>(out Enemy enemy))
+        if (_movement.TransferCollaiderCollision() != null && _movement.TransferCollaiderCollision().TryGetComponent<Enemy>(out Enemy enemy))
         {
-            _movements.Jump(_powerJump);
+            _movement.Jump(_powerJump);
             enemy.Die();
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            _movements.Jump(_powerJump);
+            _movement.Jump(_powerJump);
         }
 
         if(_directionMoveX != 0)
         {
-            if(Input.GetKey(KeyCode.LeftShift) && _movements.IsGroun == true)
+            if(Input.GetKey(KeyCode.LeftShift) && _movement.IsGroun == true)
             {
-                _movements.StartMove(_speedRun, _directionMoveX);
+                _movement.StartMove(_speedRun, _directionMoveX);
                 return;
             }
-            _movements.StartMove(_speedWalk, _directionMoveX);
+            _movement.StartMove(_speedWalk, _directionMoveX);
         }
         else
         {
-            _movements.EndMove();
+            _movement.EndMove();
         }
     }
 }

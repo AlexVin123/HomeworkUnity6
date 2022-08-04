@@ -2,29 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Movements))]
+[RequireComponent(typeof(Movement))]
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float _speedWalk;
 
-    private Movements _movements;
+    private Movement _movement;
     private float _directionMoveX = 1;
 
     private void Start()
     {
-        _movements = GetComponent<Movements>();
+        _movement = GetComponent<Movement>();
     }
 
     private void Update()
     {
-        if(_movements.TryCollisionObjectHorizontal(_directionMoveX))
+        if(_movement.TryCollisionObjectHorizontal(_directionMoveX))
         {
-            _movements.StartMove(_speedWalk, _directionMoveX);
+            _movement.StartMove(_speedWalk, _directionMoveX);
 
         }
         else
         {
-            _movements.EndMove();
+            _movement.EndMove();
             _directionMoveX *= -1;
         }
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Movements : MonoBehaviour
+public class Movement : MonoBehaviour
 {
     [SerializeField] private float _acceleration;
     [SerializeField] private float _distansCheckObjectsHorizontal;
@@ -18,7 +18,7 @@ public class Movements : MonoBehaviour
     private RaycastHit2D[] CollisionObject = new RaycastHit2D[1];
 
     public float DirectionMoveY { get { return _directionsMoveY; } private set { } }
-    public bool IsGroun { get { return CheckGround(); } private set { } }
+    public bool IsGroun { get { return CheckAvailabilityGround(); } private set { } }
     public float Speed { get { return _speed; } private set { } }
 
     private void Start()
@@ -38,7 +38,7 @@ public class Movements : MonoBehaviour
             Flip();
     }
 
-    public Collider2D SetCollider()
+    public Collider2D TransferCollaiderCollision()
     {
         if(CollisionObject[0] == true)
         {
@@ -70,7 +70,7 @@ public class Movements : MonoBehaviour
 
     public void Jump(float powerJump)
     {
-        if (CheckGround())
+        if (CheckAvailabilityGround())
         {
             _rigidbody2D.AddForce(Vector2.up * powerJump, ForceMode2D.Impulse);
         }
@@ -82,7 +82,7 @@ public class Movements : MonoBehaviour
         _rigidbody2D.velocity = new Vector2(_speed * _directionMoveX, _rigidbody2D.velocity.y);
     }
 
-    private bool CheckGround()
+    private bool CheckAvailabilityGround()
     {
         return Physics2D.Raycast(transform.position,-Vector2.up,_filter,CollisionObject,_distansCheckObjectsDown) > 0;
     }

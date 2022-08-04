@@ -1,47 +1,45 @@
 using UnityEngine;
+using System.Collections;
 
 public class SpawnPoint : MonoBehaviour
 {
-    [SerializeField] private GameObject _gameObject;
+    [SerializeField] private GameObject _gameObjectForSpawn;
     [SerializeField] private float _timeToSpawn;
 
-    private float _timer;
+    private WaitForSeconds _timer;
     private GameObject _gameObjectOnScene;
-    private bool isSpawn;
+    private bool _isSpawn;
 
     private void Start()
     {
+        _timer = new WaitForSeconds(_timeToSpawn);
         Spawn();
-        isSpawn = true;
+        _isSpawn = true;
+        StartCoroutine(ControlSpawn());
     }
 
-    private void Update()
+    private IEnumerator ControlSpawn()
     {
-        if (isSpawn == false)
+        while(true)
         {
-            if (_timer >= _timeToSpawn)
+            if (_isSpawn == false)
             {
+                yield return _timer;
                 Spawn();
-                isSpawn = true;
-                _timer = 0;
+                _isSpawn = true;
             }
-            else
+            else if (_gameObjectOnScene == null)
             {
-                _timer += Time.deltaTime;
+                _isSpawn = false;
             }
-        }
-        else if (_gameObjectOnScene == null)
-        {
-            isSpawn = false;
-        }
+
+            yield return null;
+        }        
     }
 
     private void Spawn()
     {
-        if (_gameObject != null)
-        {
-            _gameObject.transform.position = transform.position;
-            _gameObjectOnScene = Instantiate(_gameObject);
-        }            
+        _gameObjectForSpawn.transform.position = transform.position;
+        _gameObjectOnScene = Instantiate(_gameObjectForSpawn);
     }
 }

@@ -1,33 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Movements))]
+[RequireComponent(typeof(Movement))]
+[RequireComponent(typeof(Animator))]
 public class ControllerAnimationsPlayer : MonoBehaviour
 {
-    private Movements _movements;
+    private Movement _movements;
     private Animator _animator;
+    private int ParameterSpeedHash = Animator.StringToHash("Speed");
+    private int ParameterVelosityYHash = Animator.StringToHash("VelosityY");
+    private int ParameterGroundHash = Animator.StringToHash("Ground");
 
     private void Start()
     {
-        _movements = GetComponent<Movements>();
+        _movements = GetComponent<Movement>();
         _animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        _animator.SetFloat("Speed", _movements.Speed);
+        _animator.SetFloat(ParameterSpeedHash, _movements.Speed);
 
         if (_movements.IsGroun == false)
         {
-            _animator.SetFloat("Speed", 0);
-            _animator.SetBool("Ground", false);
-            _animator.SetFloat("VelosityY", _movements.DirectionMoveY);
+            _animator.SetFloat(ParameterSpeedHash, 0);
+            _animator.SetBool(ParameterGroundHash, false);
+            _animator.SetFloat(ParameterVelosityYHash, _movements.DirectionMoveY);
         }
         else
         {
-            _animator.SetBool("Ground", true);
-            _animator.SetFloat("VelosityY", 0);
+            _animator.SetBool(ParameterGroundHash, true);
+            _animator.SetFloat(ParameterVelosityYHash, 0);
         }
     }
 }
