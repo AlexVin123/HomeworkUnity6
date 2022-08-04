@@ -134,8 +134,8 @@ MonoBehaviour:
   - {fileID: 147107113851285095}
   - {fileID: 7233184677260428469}
   m_Bounds:
-    m_Center: {x: -0.14812827, y: 2.4029424, z: 0}
-    m_Extent: {x: 2.0483541, y: 2.0478745, z: 0}
+    m_Center: {x: -0.14812827, y: 2.4029415, z: 0}
+    m_Extent: {x: 2.0483541, y: 2.0478747, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -274,8 +274,8 @@ MonoBehaviour:
   - {fileID: 4417433887215709664}
   - {fileID: 147107113851285095}
   m_Bounds:
-    m_Center: {x: -1.3446642, y: 1.4640151, z: 0}
-    m_Extent: {x: 0.6186472, y: 0.5416039, z: 0}
+    m_Center: {x: -1.3446633, y: 1.464015, z: 0}
+    m_Extent: {x: 0.6186472, y: 0.54160404, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -382,7 +382,7 @@ MonoBehaviour:
   - {fileID: 147107113851285095}
   - {fileID: 7233184677260428469}
   m_Bounds:
-    m_Center: {x: -0.14413768, y: -0.07435632, z: 0}
+    m_Center: {x: -0.14413816, y: -0.0743559, z: 0}
     m_Extent: {x: 0.73390347, y: 0.5507338, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -465,6 +465,7 @@ GameObject:
   - component: {fileID: 4116030894952132860}
   - component: {fileID: 1670789329787737062}
   - component: {fileID: 8499686093280967332}
+  - component: {fileID: 731426471}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -480,7 +481,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4537618059094436303}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.609, y: -2.851153, z: 0}
+  m_LocalPosition: {x: 24.26, y: 5.53, z: -0.050296724}
   m_LocalScale: {x: 0.43432, y: 0.43432, z: 0.43432}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -509,7 +510,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 4
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: bffecdd4fc59c244ca3e10b9b954f927, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -562,8 +563,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b695402195007084cb8a6467b87bc4a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _accelerate: 10
-  DirectionsY: 0
+  _acceleration: 15
+  _distansCheckObjectsHorizontal: 0.2
+  _distansCheckObjectsDown: 0.5
 --- !u!114 &8499686093280967332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -576,6 +578,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0266e491fb20d94b9c6b0c92d68ca9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &731426471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4537618059094436303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6432c41d126d6ec4994043c8c57f2262, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speedWalk: 5
 --- !u!1 &5191357672880917092
 GameObject:
   m_ObjectHideFlags: 0
@@ -773,7 +788,7 @@ MonoBehaviour:
   - {fileID: 4638282855073585735}
   - {fileID: 147107113851285095}
   m_Bounds:
-    m_Center: {x: -0.36119992, y: 2.3938222, z: 0}
+    m_Center: {x: -0.36119896, y: 2.3938212, z: 0}
     m_Extent: {x: 0.6053519, y: 0.57263553, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
@@ -880,7 +895,7 @@ MonoBehaviour:
   - {fileID: 8499889447788775823}
   - {fileID: 7233184677260428469}
   m_Bounds:
-    m_Center: {x: -0.4639951, y: 0.26314902, z: 0}
+    m_Center: {x: -0.46399605, y: 0.26314896, z: 0}
     m_Extent: {x: 0.7363585, y: 0.5516972, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1

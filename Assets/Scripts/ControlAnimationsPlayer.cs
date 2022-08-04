@@ -7,12 +7,12 @@ public class ControlAnimationsPlayer : MonoBehaviour
 {
     private Movements _movements;
     private Animator _animator;
+
     private void Start()
     {
         _movements = GetComponent<Movements>();
         _animator = GetComponent<Animator>();
     }
-
 
     private void Update()
     {
@@ -22,7 +22,7 @@ public class ControlAnimationsPlayer : MonoBehaviour
         {
             _animator.SetFloat("Speed", 0);
             _animator.SetBool("Ground", false);
-            _animator.SetFloat("VelosityY", _movements.DirectionsY);
+            _animator.SetFloat("VelosityY", _movements.DirectionMoveY);
         }
         else
         {

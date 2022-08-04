@@ -10,33 +10,40 @@ public class Player : MonoBehaviour
     [SerializeField] private float _powerJump;
 
     private Movements _movements;
-    private float _directionX;
+    private float _directionMoveX;
 
-    private void Awake()
+    private void Start()
     {
         _movements = GetComponent<Movements>();
     }
+
     void Update()
     {
-        _directionX = Input.GetAxisRaw("Horizontal");
+        _directionMoveX = Input.GetAxisRaw("Horizontal");
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (_movements.SetCollider() != null && _movements.SetCollider().TryGetComponent<Enemy>(out Enemy enemy))
+        {
+            _movements.Jump(_powerJump);
+            enemy.Die();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             _movements.Jump(_powerJump);
         }
 
-        if(_directionX != 0)
+        if(_directionMoveX != 0)
         {
             if(Input.GetKey(KeyCode.LeftShift) && _movements.IsGroun == true)
             {
-                _movements.StartMoveComand(_speedRun, _directionX);
+                _movements.StartMove(_speedRun, _directionMoveX);
                 return;
             }
-            _movements.StartMoveComand(_speedWalk, _directionX);
+            _movements.StartMove(_speedWalk, _directionMoveX);
         }
         else
         {
-            _movements.EndMoveComand();
+            _movements.EndMove();
         }
     }
 }

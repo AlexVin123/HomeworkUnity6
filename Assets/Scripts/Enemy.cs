@@ -2,45 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Movements))]
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float _speedWalk;
 
     private Movements _movements;
-    private float DirectionX = 1;
-    private Rigidbody2D _rigidbody2D;
+    private float _directionMoveX = 1;
 
     private void Start()
     {
-        _rigidbody2D = GetComponent<Rigidbody2D>();
         _movements = GetComponent<Movements>();
     }
+
     private void Update()
     {
-        Debug.Log(CheckWay());
-        if(CheckWay())
+        if(_movements.TryCollisionObjectHorizontal(_directionMoveX))
         {
-            _movements.StartMoveComand(_speedWalk, DirectionX);
+            _movements.StartMove(_speedWalk, _directionMoveX);
+
         }
         else
         {
-            _movements.EndMoveComand();
-            DirectionX *= -1;
+            _movements.EndMove();
+            _directionMoveX *= -1;
         }
     }
 
-    private bool CheckWay()
-    {
-        var hit = new RaycastHit2D[1];
-        var countCollision = _rigidbody2D.Cast(transform.right, hit, 0.2f * DirectionX);
-
-        if(countCollision == 0)
-            return true;
-        else
-            return false;
-    }
-
-    public void Died()
+    public void Die()
     {
         Destroy(gameObject);
     }

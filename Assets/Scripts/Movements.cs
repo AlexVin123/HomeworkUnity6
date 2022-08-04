@@ -5,49 +5,72 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Movements : MonoBehaviour
 {
-    [SerializeField] private float _accelerate;
+    [SerializeField] private float _acceleration;
+    [SerializeField] private float _distansCheckObjectsHorizontal;
+    [SerializeField] private float _distansCheckObjectsDown;
 
+    private ContactFilter2D _filter;
     private float _speed;
     private float _targetSpeed;
-    private float _directionX;
-    public float DirectionsY;
+    private float _directionMoveX;
+    private float _directionsMoveY;
     private Rigidbody2D _rigidbody2D;
-    public readonly RaycastHit2D[] Result = new RaycastHit2D[1];
+    private RaycastHit2D[] CollisionObject = new RaycastHit2D[1];
 
-    public bool IsGroun { get { return CheckGround() != 0; } private set { } }
+    public float DirectionMoveY { get { return _directionsMoveY; } private set { } }
+    public bool IsGroun { get { return CheckGround(); } private set { } }
     public float Speed { get { return _speed; } private set { } }
 
-    private void Awake()
+    private void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
-        DirectionsY = _rigidbody2D.velocity.y;
+        _directionsMoveY = _rigidbody2D.velocity.y;
         Move();
 
-        if (_directionX > 0 && transform.localScale.x < 0)
+        if (_directionMoveX > 0 && transform.localScale.x < 0)
             Flip();
 
-        if (_directionX < 0 && transform.localScale.x > 0)
+        if (_directionMoveX < 0 && transform.localScale.x > 0)
             Flip();
     }
 
-    public void StartMoveComand(float targetSpeed, float directionsX)
+    public Collider2D SetCollider()
+    {
+        if(CollisionObject[0] == true)
+        {
+            return CollisionObject[0].collider;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public bool TryCollisionObjectHorizontal(float directionsX)
+    {
+        var hit = new RaycastHit2D[1];
+        var countCollision = _rigidbody2D.Cast(transform.right, hit, _distansCheckObjectsHorizontal * directionsX);
+        return countCollision == 0;
+    }
+
+    public void StartMove(float targetSpeed, float directionsX)
     {
         _targetSpeed = targetSpeed;
-        _directionX = directionsX;
+        _directionMoveX = directionsX;
     }
 
-    public void EndMoveComand()
+    public void EndMove()
     {
         _targetSpeed = 0;
     }
 
     public void Jump(float powerJump)
     {
-        if (CheckGround() != 0)
+        if (CheckGround())
         {
             _rigidbody2D.AddForce(Vector2.up * powerJump, ForceMode2D.Impulse);
         }
@@ -55,13 +78,13 @@ public class Movements : MonoBehaviour
 
     private void Move()
     {
-        _speed = Mathf.Lerp(_speed, _targetSpeed, _accelerate * Time.deltaTime);
-        _rigidbody2D.velocity = new Vector2(_speed * _directionX, _rigidbody2D.velocity.y);
+        _speed = Mathf.Lerp(_speed, _targetSpeed, _acceleration * Time.deltaTime);
+        _rigidbody2D.velocity = new Vector2(_speed * _directionMoveX, _rigidbody2D.velocity.y);
     }
 
-    private int CheckGround()
+    private bool CheckGround()
     {
-        return _rigidbody2D.Cast(transform.up, Result, -0.2f);
+        return Physics2D.Raycast(transform.position,-Vector2.up,_filter,CollisionObject,_distansCheckObjectsDown) > 0;
     }
 
     private void Flip()
