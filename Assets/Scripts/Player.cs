@@ -1,6 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Movement))]
+[RequireComponent (typeof(DefintionCollision))]
 public class Player : MonoBehaviour
 {
     [SerializeField] private float _speedWalk;
@@ -8,10 +9,12 @@ public class Player : MonoBehaviour
     [SerializeField] private float _powerJump;
 
     private Movement _movement;
+    private DefintionCollision _defintionCollision;
     private float _directionMoveX;
 
     private void Start()
     {
+        _defintionCollision = GetComponent<DefintionCollision>();
         _movement = GetComponent<Movement>();
     }
 
@@ -19,7 +22,7 @@ public class Player : MonoBehaviour
     {
         _directionMoveX = Input.GetAxisRaw("Horizontal");
 
-        if (_movement.TransferCollaiderCollision() != null && _movement.TransferCollaiderCollision().TryGetComponent<Enemy>(out Enemy enemy))
+        if (_defintionCollision.TransferCollaiderCollision() != null && _defintionCollision.TransferCollaiderCollision().TryGetComponent<Enemy>(out Enemy enemy))
         {
             _movement.Jump(_powerJump);
             enemy.Die();
@@ -32,7 +35,7 @@ public class Player : MonoBehaviour
 
         if(_directionMoveX != 0)
         {
-            if(Input.GetKey(KeyCode.LeftShift) && _movement.IsGroun == true)
+            if(Input.GetKey(KeyCode.LeftShift) && _defintionCollision.IsGroun == true)
             {
                 _movement.StartMove(_speedRun, _directionMoveX);
                 return;
